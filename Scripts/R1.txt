@@ -1,0 +1,33 @@
+enable
+configure terminal
+hostname R1
+enable password cisco
+enable secret tics
+service password-encryption
+line console 0
+password tics
+login
+exit
+interface g0/1
+ip add 192.168.0.1 255.255.255.192
+description "R1toS1"
+no shut
+interface g0/0
+ip add 10.0.0.5 255.255.255.252
+description "R1toR2"
+no shut
+exit
+ip route 192.168.0.64 255.255.255.224 10.0.0.6
+ip domain-name itsoeh.edu
+username admin password admin
+crypto key generate rsa
+1024
+line vty 0 15
+transport input ssh
+login local
+banner login "Dispositivo permitido"
+banner motd "Acceso restringido"
+
+
+
+

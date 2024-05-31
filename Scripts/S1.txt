@@ -1,0 +1,29 @@
+enable
+configure terminal
+hostname S1
+enable password cisco
+enable secret tics
+service password-encryption
+line console 0
+password console
+login
+exit
+interface vlan1
+ip add 192.168.0.62 255.255.255.192
+description "toAdmin"
+no shut
+exit
+ip default-gateway 192.168.0.1
+ip domain-name itsoeh.edu
+username admin password admin
+crypto key generate rsa
+1024
+line vty 0 15
+transport input ssh
+login local
+banner login "Dispositivo permitido"
+banner motd "Acceso restringido"
+
+
+
+
