@@ -1,0 +1,96 @@
+Current configuration : 994 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R1
+!
+!
+!
+enable secret 5 $1$mERr$/rUmknEu0acMxf.vXZKxO1
+enable password 7 0822455D0A16
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+username admin password 7 082048430017
+!
+!
+license udi pid CISCO2901/K9 sn FTX1524RA78-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain-name itsoeh.edu
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ description "R1toS1"
+ ip address 10.0.0.5 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ description "R1toS1"
+ ip address 192.168.0.1 255.255.255.192
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner login ^CDispositivo permitido^C
+banner motd ^CAcceso restringido^C
+!
+!
+!
+!
+line con 0
+ password 7 0835454D1A
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+!
+end
+
+
+
+
+
